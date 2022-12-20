@@ -1,15 +1,14 @@
 <div class="col">
   <div class="card" style="width: 18rem">
-    <img
-      src="https://www.alephksa.com/wp-content/uploads/iPhone_14_Pro_Deep_Purple_PDP_Image_Position-1a_EN-1-scaled.jpg"
-      class="card-img-top"
-      alt="product image"
-    />
+    <img src="{{ product.url }}" class="card-img-top" alt="product image" />
     <div class="card-body">
-      <h5 class="card-title">{{ productname }}</h5>
+      <h5 class="card-title">
+        <a href="/product/{{ product.id }}">{{ product.name }}</a>
+      </h5>
       <p class="card-text">
-        {{ productdescription }}
+        {{ product.description }}
       </p>
+      <p class="card-text">{{ product.price }}$</p>
       <button href="#" class="btn btn-primary">Add to Cart</button>
     </div>
   </div>

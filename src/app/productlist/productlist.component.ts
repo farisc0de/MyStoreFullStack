@@ -1,35 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Product } from 'src/models/product.model';
+import { HttpService } from '../http.service';
 
 @Component({
   selector: 'app-productlist',
   templateUrl: './productlist.component.html',
   styleUrls: ['./productlist.component.css'],
 })
-export class ProductlistComponent {
-  products = [
-    { name: 'Product 1', description: 'Product 1 Description', price: 100 },
-    { name: 'Product 2', description: 'Product 2 Description', price: 100 },
-    { name: 'Product 3', description: 'Product 3 Description', price: 100 },
-    { name: 'Product 1', description: 'Product 1 Description', price: 100 },
-    { name: 'Product 2', description: 'Product 2 Description', price: 100 },
-    { name: 'Product 3', description: 'Product 3 Description', price: 100 },
-    { name: 'Product 1', description: 'Product 1 Description', price: 100 },
-    { name: 'Product 2', description: 'Product 2 Description', price: 100 },
-    { name: 'Product 3', description: 'Product 3 Description', price: 100 },
-    { name: 'Product 1', description: 'Product 1 Description', price: 100 },
-    { name: 'Product 2', description: 'Product 2 Description', price: 100 },
-    { name: 'Product 3', description: 'Product 3 Description', price: 100 },
-    { name: 'Product 1', description: 'Product 1 Description', price: 100 },
-    { name: 'Product 2', description: 'Product 2 Description', price: 100 },
-    { name: 'Product 3', description: 'Product 3 Description', price: 100 },
-    { name: 'Product 1', description: 'Product 1 Description', price: 100 },
-    { name: 'Product 2', description: 'Product 2 Description', price: 100 },
-    { name: 'Product 3', description: 'Product 3 Description', price: 100 },
-    { name: 'Product 1', description: 'Product 1 Description', price: 100 },
-    { name: 'Product 2', description: 'Product 2 Description', price: 100 },
-    { name: 'Product 3', description: 'Product 3 Description', price: 100 },
-    { name: 'Product 1', description: 'Product 1 Description', price: 100 },
-    { name: 'Product 2', description: 'Product 2 Description', price: 100 },
-    { name: 'Product 3', description: 'Product 3 Description', price: 100 },
-  ];
+export class ProductlistComponent implements OnInit {
+  products: Product[] = [];
+
+  constructor(private httpService: HttpService) {}
+
+  ngOnInit(): void {
+    this.httpService.getProducts().subscribe((data) => {
+      this.products = data;
+    });
+  }
 }

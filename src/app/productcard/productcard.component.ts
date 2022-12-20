@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-productcard',
@@ -6,7 +6,10 @@ import { Component } from '@angular/core';
   styleUrls: ['./productcard.component.css'],
 })
 export class ProductcardComponent {
-  productname = 'Product Name';
-  productdescription = 'Product Description';
-  productprice = 0;
+  @Input()
+  product: any = {
+    name: 'Product Name',
+    price: 0,
+    url: 'https://via.placeholder.com/150',
+  };
 }
