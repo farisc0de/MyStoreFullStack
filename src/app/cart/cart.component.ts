@@ -7,13 +7,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CartComponent implements OnInit {
   cart: any = [];
+  total: number = 0;
+  totalItems: number = 0;
 
   ngOnInit(): void {
     this.cart = this.getCartProduct();
+    this.getTotal();
+    this.totalItems = this.cart.length;
   }
 
   getCartProduct() {
     const getProduct = localStorage.getItem('products');
-    return getProduct ? [JSON.parse(getProduct)] : [];
+    return getProduct ? JSON.parse(getProduct) : [];
+  }
+
+  getTotal() {
+    this.total = this.cart
+      .reduce((acc: any, item: { price: any }) => {
+        return acc + item.price;
+      }, 0)
+      .toPrecision(4);
   }
 }

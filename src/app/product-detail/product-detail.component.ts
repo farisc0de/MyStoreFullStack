@@ -20,8 +20,14 @@ export class ProductDetailComponent {
 
   addToCart(product: Product): void {
     const cartProducts: Product[] = this.getCartProduct();
-    localStorage.setItem('products', JSON.stringify(product));
-    alert('Product added to cart!');
+    let products: Product[] = [];
+    let productInCart = cartProducts.find((ele) => ele.id === product.id);
+    if (!productInCart) {
+      products = [...cartProducts, product];
+      localStorage.setItem('products', JSON.stringify(products));
+      const message = `${product.name} has been added to your cart.`;
+      alert(message);
+    }
   }
 
   getCartProduct() {
