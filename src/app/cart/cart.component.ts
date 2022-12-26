@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-cart',
@@ -23,8 +23,8 @@ export class CartComponent implements OnInit {
 
   getTotal() {
     this.total = this.cart
-      .reduce((acc: any, item: { price: any }) => {
-        return acc + item.price;
+      .reduce((acc: any, item: { price: any; quantity: any }) => {
+        return (acc + item.price) * item.quantity;
       }, 0)
       .toPrecision(4);
   }

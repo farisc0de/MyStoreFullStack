@@ -41,6 +41,7 @@
       <button
         class="btn btn-primary px-3 me-2"
         onclick="this.parentNode.querySelector('input[type=number]').stepDown()"
+        (click)="decreaseQuantity(product.id)"
       >
         <i class="fas fa-minus"></i>
       </button>
@@ -48,9 +49,9 @@
       <div class="form-outline">
         <input
           id="form1"
-          min="0"
+          min="1"
           name="quantity"
-          value="1"
+          value="{{ product.quantity }}"
           type="number"
           class="form-control"
         />
@@ -60,6 +61,7 @@
       <button
         class="btn btn-primary px-3 ms-2"
         onclick="this.parentNode.querySelector('input[type=number]').stepUp()"
+        (click)="increateQuantity(product.id)"
       >
         <i class="fas fa-plus"></i>
       </button>

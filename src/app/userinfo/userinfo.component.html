@@ -1,36 +1,97 @@
-<form (ngSubmit)="onSubmit()" [formGroup]="createForm">
+<form (ngSubmit)="onSubmit()" [formGroup]="createForm" class="needs-validation">
   <div class="row g-3">
-    <div class="col-sm-6">
+    <div class="col-sm-6 has-validation">
       <label for="firstName" class="form-label">First name</label>
       <input
         formControlName="firstName"
         type="text"
+        [(ngModel)]="firstName"
         class="form-control"
         placeholder=""
         required
+        minlength="4"
       />
+      <div
+        *ngIf="
+          createForm.controls['firstName'].invalid &&
+          (createForm.controls['firstName'].dirty ||
+            createForm.controls['firstName'].touched)
+        "
+      >
+        <div
+          *ngIf="createForm.controls['firstName'].errors?.['required']"
+          class="text-danger"
+        >
+          First name is required.
+        </div>
+        <div
+          *ngIf="createForm.controls['firstName'].errors?.['minlength']"
+          class="text-danger"
+        >
+          First name must be at least 4 characters long.
+        </div>
+      </div>
     </div>
 
     <div class="col-sm-6">
       <label for="lastName" class="form-label">Last name</label>
       <input
         formControlName="lastName"
+        [(ngModel)]="lastName"
         type="text"
         class="form-control"
         placeholder=""
         value=""
         required
       />
+
+      <div
+        *ngIf="
+          createForm.controls['lastName'].invalid &&
+          (createForm.controls['lastName'].dirty ||
+            createForm.controls['lastName'].touched)
+        "
+      >
+        <div
+          *ngIf="createForm.controls['lastName'].errors?.['required']"
+          class="text-danger"
+        >
+          Last name is required.
+        </div>
+        <div
+          *ngIf="createForm.controls['lastName'].errors?.['minlength']"
+          class="text-danger"
+        >
+          Last name must be at least 4 characters long.
+        </div>
+      </div>
     </div>
 
     <div class="col-12">
       <label for="email" class="form-label">Email</label>
       <input
         formControlName="emailAddress"
+        [(ngModel)]="emailAddress"
         type="email"
         class="form-control"
         placeholder="you@example.com"
+        required=""
       />
+
+      <div
+        *ngIf="
+          createForm.controls['emailAddress'].invalid &&
+          (createForm.controls['emailAddress'].dirty ||
+            createForm.controls['emailAddress'].touched)
+        "
+      >
+        <div
+          *ngIf="createForm.controls['emailAddress'].errors?.['required']"
+          class="text-danger"
+        >
+          Email Address is required.
+        </div>
+      </div>
     </div>
   </div>
 
@@ -44,12 +105,26 @@
       <input
         type="text"
         class="form-control"
-        id="cc-name"
+        [(ngModel)]="cardName"
+        formControlName="cardName"
         placeholder=""
         required
       />
       <small class="text-muted">Full name as displayed on card</small>
-      <div class="invalid-feedback">Name on card is required</div>
+      <div
+        *ngIf="
+          createForm.controls['cardName'].invalid &&
+          (createForm.controls['cardName'].dirty ||
+            createForm.controls['cardName'].touched)
+        "
+      >
+        <div
+          *ngIf="createForm.controls['cardName'].errors?.['required']"
+          class="text-danger"
+        >
+          Name on card is required
+        </div>
+      </div>
     </div>
 
     <div class="col-md-6">
@@ -58,16 +133,60 @@
         type="text"
         class="form-control"
         formControlName="cardNumber"
+        [(ngModel)]="cardNumber"
         placeholder=""
         required
+        minlength="16"
       />
-      <div class="invalid-feedback">Credit card number is required</div>
+
+      <div
+        *ngIf="
+          createForm.controls['cardNumber'].invalid &&
+          (createForm.controls['cardNumber'].dirty ||
+            createForm.controls['cardNumber'].touched)
+        "
+      >
+        <div
+          *ngIf="createForm.controls['cardNumber'].errors?.['required']"
+          class="text-danger"
+        >
+          Credit card number is required
+        </div>
+
+        <div
+          *ngIf="createForm.controls['cardNumber'].errors?.['minlength']"
+          class="text-danger"
+        >
+          Credit card number must be at least 16 characters long.
+        </div>
+      </div>
     </div>
 
     <div class="col-md-3">
       <label for="cc-expiration" class="form-label">Expiration</label>
-      <input type="text" class="form-control" placeholder="" required />
-      <div class="invalid-feedback">Expiration date required</div>
+      <input
+        type="text"
+        class="form-control"
+        formControlName="cardExpDate"
+        [(ngModel)]="cardExpDate"
+        placeholder=""
+        required
+      />
+
+      <div
+        *ngIf="
+          createForm.controls['cardExpDate'].invalid &&
+          (createForm.controls['cardExpDate'].dirty ||
+            createForm.controls['cardExpDate'].touched)
+        "
+      >
+        <div
+          *ngIf="createForm.controls['cardExpDate'].errors?.['required']"
+          class="text-danger"
+        >
+          Expiration date required
+        </div>
+      </div>
     </div>
 
     <div class="col-md-3">
@@ -76,10 +195,25 @@
         type="text"
         class="form-control"
         formControlName="cvv"
+        [(ngModel)]="cvv"
         placeholder=""
         required
       />
-      <div class="invalid-feedback">Security code required</div>
+
+      <div
+        *ngIf="
+          createForm.controls['cvv'].invalid &&
+          (createForm.controls['cvv'].dirty ||
+            createForm.controls['cvv'].touched)
+        "
+      >
+        <div
+          *ngIf="createForm.controls['cvv'].errors?.['required']"
+          class="text-danger"
+        >
+          Security code required
+        </div>
+      </div>
     </div>
   </div>
 

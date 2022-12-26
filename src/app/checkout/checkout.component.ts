@@ -31,15 +31,13 @@ export class CheckoutComponent {
 
   getTotal() {
     this.total = this.cart
-      .reduce((acc: any, item: { price: any }) => {
-        return acc + item.price;
+      .reduce((acc: any, item: { price: any; quantity: any }) => {
+        return (acc + item.price) * item.quantity;
       }, 0)
       .toPrecision(4);
   }
 
   onSubmit(value: any) {
-    console.log('done');
-    console.log(value.firstName);
     this.route.navigate([`success/${value.firstName}/${this.total}`]);
   }
 }

@@ -19,24 +19,30 @@ export class UserinfoComponent implements OnInit {
   firstName: any;
   lastName: any;
   emailAddress: any;
+  cardName: any;
   cardNumber: any;
+  cardExpDate: any;
   cvv: any;
 
   ngOnInit(): void {
     this.createForm = this.fb.group({
-      firstName: '',
-      lastName: '',
-      emailAddress: '',
-      cardNumber: '',
-      cvv: '',
+      firstName: ['', Validators.required],
+      lastName: ['', Validators.required],
+      emailAddress: ['', Validators.required],
+      cardName: ['', Validators.required],
+      cardNumber: ['', Validators.required],
+      cardExpDate: ['', Validators.required],
+      cvv: ['', Validators.required],
     });
   }
 
   onSubmit() {
-    let form = {
-      firstName: this.createForm.get('firstName')?.value,
-      lastName: this.createForm.get('lastName')?.value,
-    };
-    this.userInfo.emit(form);
+    if (!this.createForm.invalid) {
+      let form = {
+        firstName: this.createForm.get('firstName')?.value,
+        lastName: this.createForm.get('lastName')?.value,
+      };
+      this.userInfo.emit(form);
+    }
   }
 }
