@@ -4,6 +4,9 @@ version: 2.1
 
 # Define a job to be invoked later in a workflow.
 # See: https://circleci.com/docs/2.0/configuration-reference/#jobs
+orbs:
+  node: circleci/node@5.0.3
+
 jobs:
   build:
     # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
@@ -14,9 +17,11 @@ jobs:
     # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - checkout
+      - node/install
       - run:
-          name: "Say hello"
-          command: "echo Hello, World!"
+          name: "Install Angular CLI"
+          command: "npm install -g @angular/cli"
+      - node/test
 
 # Invoke jobs via workflows
 # See: https://circleci.com/docs/2.0/configuration-reference/#workflows
