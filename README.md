@@ -23,6 +23,20 @@ A Simple E-Commerce Store built with Angular Js, Node Js, Boostrap.
 ![](https://i.ibb.co/XD16G79/Screenshot-2022-12-26-132720.png)
 ![](https://i.ibb.co/BskpNZQ/Screenshot-2022-12-26-132732.png)
 
+## Deploy Project
+
+1. Screenshot From Azure
+
+![](https://i.ibb.co/Rzc353P/Screenshot-2022-12-26-220235.png)
+
+2. Screenshot from CircleCI
+
+![](https://i.imgur.com/Pc8f8PQ.png)
+
+3. Website URL
+
+http://20.55.91.55:4200/
+
 ## License
 
 MIT
