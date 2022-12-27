@@ -16,7 +16,7 @@ jobs:
       - node/install-packages:
           cache-path: ~/project/node_modules
           override-ci-command: npm install
-      - run: "npm install -g @angular/cli"
+      - run: "sudo npm install -g @angular/cli"
       - run: "npm run test"
 
 # Invoke jobs via workflows
